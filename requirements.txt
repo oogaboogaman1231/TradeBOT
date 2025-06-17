@@ -1,0 +1,8 @@
+flask
+requests
+python-binance
+openai
+apscheduler
+pandas
+python-dotenv
+werkzeug

@@ -1,0 +1,5 @@
+{
+  "interval_minutes": 5,
+  "symbols_to_watch": ["BTCUSDT", "ETHUSDT", "SOLUSDT", "BNBUSDT", "DOGEUSDT", "LINKUSDT", "ADAUSDT", "FETUSDT", "AVAXUSDT", "OMUSDT", "RENDERUSDT", "TRUMPUSDT"],
+  "max_usdt_per_trade": 80
+}
