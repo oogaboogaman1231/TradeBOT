@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Crypto Bot Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.x/dist/chart.min.js"></script> 
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="bg-gray-900 text-white font-poppins">
+    
+    <section id="welcome-section" class="min-h-screen flex flex-col justify-center items-center text-center p-6 transition-opacity duration-1000 ease-in-out">
+        <h1 id="welcome-text" class="text-6xl md:text-8xl lg:text-9xl font-extrabold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600 animate-gradient-shift">
+            Bem-vindo ao 
+            <span class="block mt-4 text-white text-5xl md:text-7xl lg:text-8xl">Crypto Bot Dashboard! 🚀</span>
+        </h1>
+        <p class="text-xl md:text-2xl text-gray-300 max-w-2xl">
+            Sua ferramenta inteligente para gerenciar suas negociações de criptomoedas com IA.
+        </p>
+        <div class="mt-8">
+            <button id="start-bot-btn" class="bg-gradient-to-r from-green-500 to-green-600 text-white px-8 py-4 rounded-full text-xl font-bold hover:from-green-600 hover:to-green-700 transition-all duration-300 transform hover:scale-105 shadow-lg mx-2">
+                Começar Bot
+            </button>
+            <button id="stop-bot-btn" class="bg-gradient-to-r from-red-500 to-red-600 text-white px-8 py-4 rounded-full text-xl font-bold hover:from-red-600 hover:to-red-700 transition-all duration-300 transform hover:scale-105 shadow-lg mx-2 mt-4 md:mt-0">
+                Parar Bot
+            </button>
+            <a href="/logout" class="block mt-8 text-gray-400 hover:text-gray-200 transition-colors duration-300">Sair</a>
+        </div>
+    </section>
+
+    <div id="dashboard-content" class="container mx-auto p-8 opacity-0 transition-opacity duration-1000 ease-in-out translate-y-20">
+        <h1 class="text-5xl font-extrabold text-center mb-10 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-600">Dashboard</h1>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8 section-reveal">
+            <div class="bg-gray-800 rounded-xl p-6 shadow-lg">
+                <h2 class="text-2xl font-semibold mb-3">Status do Bot <span class="text-yellow-400">📊</span></h2>
+                <p id="status-message" class="text-xl text-gray-300">{{ status }}</p>
+                <p class="text-sm text-gray-500 mt-2">Próximo ciclo: <span id="next-cycle-time">Aguardando...</span></p>
+            </div>
+            <div class="bg-gray-800 rounded-xl p-6 shadow-lg">
+                <h2 class="text-2xl font-semibold mb-3">Saldo USDT <span class="text-green-500">💰</span></h2>
+                <p class="text-3xl font-bold text-green-300">$<span id="usdt-balance">{{ "%.2f"|format(usdt) }}</span></p>
+            </div>
+            <div class="md:col-span-1 bg-gray-800 rounded-xl p-6 shadow-lg"> {# Alterado de md:col-span-2 para 1 para caber em 3 colunas #}
+                <h2 class="text-2xl font-semibold mb-3">Performance Total <span class="text-blue-400">📈</span></h2>
+                <div class="relative w-full h-48"> 
+                    <canvas id="portfolioChart" class="w-full h-full"></canvas> 
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-gray-800 rounded-xl p-6 shadow-lg mb-8 section-reveal">
+            <h2 class="text-2xl font-semibold mb-4">Portfólio Atual <span class="text-purple-400">💼</span></h2>
+            <div id="portfolio-list" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            </div>
+        </div>
+
+        <div class="bg-gray-800 rounded-xl p-6 shadow-lg section-reveal">
+            <h2 class="text-2xl font-semibold mb-4">Histórico de Operações <span class="text-orange-400">📜</span></h2>
+            <div id="history-list" class="space-y-4">
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
