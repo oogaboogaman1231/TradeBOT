@@ -1,0 +1,108 @@
+/* static/style.css */
+body {
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Base styles for sections that will reveal */
+.section-reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+/* State when section is revealed */
+.section-reveal.revealed {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Animations for welcome section */
+@keyframes gradient-shift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.animate-gradient-shift {
+    background-size: 200% 200%;
+    animation: gradient-shift 3s ease infinite;
+}
+
+/* Utility buttons */
+.btn-primary {
+    background: linear-gradient(to right, #4CAF50, #2196F3); /* Green to Blue */
+    padding: 0.75rem 1.5rem;
+    border-radius: 9999px; /* Fully rounded */
+    color: white;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    transform: scale(1.05);
+    opacity: 0.9;
+}
+
+.btn-secondary {
+    background: linear-gradient(to right, #607D8B, #9E9E9E); /* Greyish */
+    padding: 0.75rem 1.5rem;
+    border-radius: 9999px; /* Fully rounded */
+    color: white;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.btn-secondary:hover {
+    transform: scale(1.05);
+    opacity: 0.9;
+}
+
+
+/* Styling for portfolio items */
+.portfolio-item {
+    background-color: #2d3748; /* bg-gray-700 */
+    border-radius: 0.75rem; /* rounded-xl */
+    padding: 1.5rem; /* p-6 */
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* shadow-lg */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.portfolio-item h3 {
+    font-size: 1.25rem; /* text-xl */
+    font-weight: 600; /* font-semibold */
+    margin-bottom: 0.5rem;
+    color: #cbd5e0; /* text-gray-200 */
+}
+
+.portfolio-item p {
+    font-size: 1rem; /* text-lg */
+    color: #a0aec0; /* text-gray-400 */
+    margin-bottom: 0.25rem;
+}
+
+.portfolio-item .price-change {
+    font-size: 0.875rem; /* text-sm */
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.price-change.positive {
+    color: #48bb78; /* green-500 */
+}
+
+.price-change.negative {
+    color: #ef4444; /* red-500 */
+}
+
+/* History table */
+#history-table-body tr:nth-child(even) {
+    background-color: #2d3748; /* bg-gray-700 for even rows */
+}
+
+#history-table-body tr:hover {
+    background-color: #4a5568; /* bg-gray-600 on hover */
+}
