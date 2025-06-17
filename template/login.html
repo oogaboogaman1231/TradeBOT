@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Login - Crypto Bot</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(to right bottom, #1a202c, #2d3748);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .form-container {
+            background-color: #2d3748;
+            border-radius: 1rem;
+            padding: 2.5rem;
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 500px;
+        }
+        input[type="email"], input[type="password"], input[type="text"] {
+            background-color: #4a5568;
+            border: 1px solid #636b77;
+            color: #e2e8f0;
+            padding: 0.75rem 1rem;
+            border-radius: 0.5rem;
+            width: 100%;
+        }
+        button {
+            transition: background-color 0.2s;
+        }
+        button:hover {
+            opacity: 0.9;
+        }
+    </style>
+</head>
+<body class="text-white">
+    <div class="form-container">
+        <h1 class="text-4xl font-extrabold text-center mb-6 text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600">
+            Crypto Bot
+        </h1>
+        <p class="text-center text-gray-400 mb-8">Faça login ou registre-se para começar a negociar.</p>
+
+        {% if error %}
+            <div class="bg-red-500 text-white p-3 rounded-md mb-4 text-center">
+                {{ error }}
+            </div>
+        {% endif %}
+
+        <form action="/login" method="post" class="space-y-4" id="loginForm">
+            <div>
+                <label for="email" class="block text-gray-300 text-sm font-semibold mb-2">Email</label>
+                <input type="email" id="email" name="email" required class="focus:outline-none focus:ring-2 focus:ring-blue-500" value="{{ form_data.email if form_data else '' }}">
+            </div>
+            <div>
+                <label for="password" class="block text-gray-300 text-sm font-semibold mb-2">Senha</label>
+                <input type="password" id="password" name="password" required class="focus:outline-none focus:ring-2 focus:ring-blue-500">
+            </div>
+            <button type="submit" class="w-full bg-blue-600 text-white p-3 rounded-md font-semibold text-lg hover:bg-blue-700">Login</button>
+        </form>
+
+        <div class="text-center text-gray-400 mt-6 mb-4">
+            Ou
+        </div>
+
+        <form action="/register" method="post" class="space-y-4" id="registerForm">
+            <h2 class="text-2xl font-bold text-center mb-4 text-blue-300">Novo Registro</h2>
+            <p class="text-sm text-center text-gray-400 mb-6">Preencha com seus dados e chaves de API.</p>
+
+            <div>
+                <label for="reg_email" class="block text-gray-300 text-sm font-semibold mb-2">Email (Registro)</label>
+                <input type="email" id="reg_email" name="email" required class="focus:outline-none focus:ring-2 focus:ring-blue-500" value="{{ form_data.email if form_data else '' }}">
+            </div>
+            <div>
+                <label for="reg_password" class="block text-gray-300 text-sm font-semibold mb-2">Senha (Registro)</label>
+                <input type="password" id="reg_password" name="password" required class="focus:outline-none focus:ring-2 focus:ring-blue-500">
+            </div>
+            
+            <div class="mt-6">
+                <h3 class="text-xl font-semibold mb-3 text-purple-300">Chaves da Corretora (Binance)</h3>
+                <input type="hidden" name="broker_name" value="Binance"> {# Corretora fixa por enquanto #}
+                <div>
+                    <label for="binance_api_key" class="block text-gray-300 text-sm font-semibold mb-2">Binance API Key</label>
+                    <input type="text" id="binance_api_key" name="binance_api_key" required class="focus:outline-none focus:ring-2 focus:ring-purple-500" value="{{ form_data.binance_api_key if form_data else '' }}">
+                </div>
+                <div class="mt-4">
+                    <label for="binance_secret_key" class="block text-gray-300 text-sm font-semibold mb-2">Binance Secret Key</label>
+                    <input type="text" id="binance_secret_key" name="binance_secret_key" required class="focus:outline-none focus:ring-2 focus:ring-purple-500" value="{{ form_data.binance_secret_key if form_data else '' }}">
+                </div>
+            </div>
+
+            <div class="mt-6">
+                <h3 class="text-xl font-semibold mb-3 text-green-300">Chave da OpenAI</h3>
+                <div>
+                    <label for="openai_api_key" class="block text-gray-300 text-sm font-semibold mb-2">OpenAI API Key</label>
+                    <input type="text" id="openai_api_key" name="openai_api_key" required class="focus:outline-none focus:ring-2 focus:ring-green-500" value="{{ form_data.openai_api_key if form_data else '' }}">
+                </div>
+            </div>
+
+            <button type="submit" class="w-full bg-green-600 text-white p-3 rounded-md font-semibold text-lg hover:bg-green-700 mt-6">Registrar</button>
+        </form>
+    </div>
+</body>
+</html>
